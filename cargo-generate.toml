@@ -1,0 +1,20 @@
+# added because builtin doesn't allow for 'both' option
+[placeholders.cratetype]
+type = "string"
+prompt = "What type of crate is this?"
+choices = ["bin", "lib", "both"]
+default = "bin"
+
+[conditional.'cratetype == "lib"']
+ignore = ["src/main.rs"]
+
+[conditional.'cratetype == "bin"']
+ignore = ["src/lib.rs"]
+
+[placeholders.test]
+type = "bool"
+prompt = "Use default test?"
+default = false
+
+[conditional.'!test']
+ignore = ["src/test.rs"]
